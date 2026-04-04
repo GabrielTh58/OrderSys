@@ -42,12 +42,23 @@ export class User extends Entity<UserProps>{
         });
     }        
 
+    updatePasswordWithHash(hashedPassword: string): void {
+        this.clone({ password: hashedPassword });
+    }
+
     static restore(id: string, props: UserProps): User {
         return new User(id, props);
     }
 
+    private clone(changes: Partial<UserProps>): User {
+        return new User(this.id, {
+            ...this.props,
+            ...changes 
+        });
+    }
+
     get name(): string { return this.props.name }
     get email(): string { return this.props.email }
-    get password(): string | undefined {return this.props.password }
+    get password(): string {return this.props.password }
     get createdAt(): Date { return this.props.createdAt }
 }

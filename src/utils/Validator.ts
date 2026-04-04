@@ -21,4 +21,19 @@ export class Validator {
         }
         return null;
     }
+
+    static isPositiveNumber(error: string, value: number): string | null {
+        if(value <= 0) return error;
+        return null;
+    }
+
+    static isNonNegativeNumber(error: string, value: number): string | null {
+        if(value < 0) return error;
+        return null;
+    }
+
+    static combine(...validators: (string | null)[]): string | null {
+        const errors = validators.filter((v) => v !== null);
+        return errors.length > 0 ? errors.join(', ') : null;
+    }
 }
