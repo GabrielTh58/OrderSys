@@ -12,11 +12,11 @@ export class PrismaUserRepository implements UserRepository {
     async save(user: User): Promise<User> {
         const rawUser = UserMapper.toPrisma(user);
         
-        const { id, createdAt, ...dataToUpdate } = rawUser;
+        const { id, createdAt, ...rest } = rawUser;
 
         const savedPrismaUser = await this.prisma.user.upsert({
             where: { email: rawUser.email },
-            update: dataToUpdate,
+            update: rest,
             create: rawUser
         });
 

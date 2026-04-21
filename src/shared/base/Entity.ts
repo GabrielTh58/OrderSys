@@ -3,7 +3,6 @@ export interface EntityProps {
 }
 
 export class Entity <Props extends EntityProps> {
-
     constructor(
         readonly id: string,
         readonly props: Props

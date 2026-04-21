@@ -1,9 +1,9 @@
 import { CreateProductDTO, Products } from "../model";
-import { ProductRepository } from "../provider";
+import { ProductsRepository } from "../provider";
 import { AppError } from "../shared/errors/AppError";
 
 export class ProductsService {
-  constructor(private readonly productRepo: ProductRepository) {}
+  constructor(private readonly productRepo: ProductsRepository) {}
 
   async createProduct(dto: CreateProductDTO): Promise<Products> {
     const product = Products.create(dto);

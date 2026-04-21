@@ -1,3 +1,4 @@
 export * from './CryptoProvider';
 export * from './UserRepository';
-export * from './ProductRepository';
+export * from './ProductsRepository';
+export * from './OrderRepository';

@@ -1,14 +1,19 @@
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjYTA3YTg5Ni1iZDkyLTRlZTMtOGFkOS05NGEyNmRjY2Y0MzYiLCJpYXQiOjE3NzY3NDgwMDcsImV4cCI6MTc3NzM1MjgwN30._7Nm1GL7oao9wdxCswSqdauLImoUjQBR0mziTEyFZRA
+
 POST http://localhost:4000/products
 content-type: application/json
+Authorization: Bearer {{token}}
 
 {
   "name": "Product 2",
   "price": 10.99,
-  "stock": 100  
+  "stock": 100
 }
 
 ###
 GET http://localhost:4000/products
+Authorization: Bearer {{token}}
 
 ###
 GET http://localhost:4000/products/d7337873-993a-4d12-b5fd-5f049bd2482f
+Authorization: Bearer {{token}}

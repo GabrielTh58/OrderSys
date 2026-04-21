@@ -2,8 +2,10 @@ import express from 'express';
 import dotenv from 'dotenv';
 import authRoutes from './routes/AuthRoutes';
 import productsRoutes from './routes/ProductsRoutes';
+import orderRoutes from './routes/OrderRouter';
 import { setupSwagger } from './config/swagger';
 import { ErrorHandler } from './middleware/ErrorHandler';
+import { AuthMiddleware } from './middleware/AuthMiddleware';
 
 dotenv.config();
 const PORT = process.env.PORT || 4000;
@@ -19,7 +21,9 @@ app.get('/', (req, res) => {
 });
 
 app.use('/auth', authRoutes);
+app.use(AuthMiddleware)
 app.use('/products', productsRoutes);
+app.use('/orders', orderRoutes)
 
 app.use(ErrorHandler)
 app.listen(PORT, () => {

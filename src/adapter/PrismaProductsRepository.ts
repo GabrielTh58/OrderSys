@@ -1,17 +1,23 @@
 import { PrismaClient } from "../../generated/prisma/client";
 import { ProductMapper } from "../mapper/ProductMapper";
 import { Products } from "../model";
-import { ProductRepository } from "../provider";
+import { ProductsRepository } from "../provider";
 
-export class ProductsRepository implements ProductRepository {
+export class PrismaProductsRepository implements ProductsRepository {
     constructor(
         private readonly prisma: PrismaClient
     ) {}
 
     async save(product: Products): Promise<Products> {
-        const prismaProduct = ProductMapper.toPrisma(product);
+        const rawProduct = ProductMapper.toPrisma(product);
 
-        const savedProduct = await this.prisma.products.create({ data: prismaProduct });
+        const { id, createdAt, ...rest } = rawProduct;
+
+        const savedProduct = await this.prisma.products.upsert({
+            where: { id: rawProduct.id },
+            update: rest,
+            create: rawProduct
+        });
 
         return ProductMapper.toDomain(savedProduct);
     }

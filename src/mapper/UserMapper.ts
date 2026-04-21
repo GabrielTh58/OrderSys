@@ -2,12 +2,12 @@ import { User as PrismaUser } from "../../generated/prisma/client";
 import { User } from "../model";
 
 export class UserMapper{
-    static toDomain(prismaUser: PrismaUser): User {
-        return User.restore(prismaUser.id, {
-            name: prismaUser.name,
-            email: prismaUser.email,
-            password: prismaUser.password,
-            createdAt: prismaUser.createdAt
+    static toDomain(rawUser: PrismaUser): User {
+        return User.restore(rawUser.id, {
+            name: rawUser.name,
+            email: rawUser.email,
+            password: rawUser.password,
+            createdAt: rawUser.createdAt
         })
     }
 

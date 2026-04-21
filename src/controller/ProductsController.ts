@@ -24,7 +24,7 @@ export class ProductsController {
 
     async getProductById(req: Request, res: Response): Promise<void> {
         const { id } = req.params;
-        const product = await this.productsService.getProductById(id as string);
+        const product = await this.productsService.getProductById(String(id));
 
         if (!product) {
             res.status(404).json({ message: "Produto não encontrado" });

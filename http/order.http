@@ -1,0 +1,29 @@
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjYTA3YTg5Ni1iZDkyLTRlZTMtOGFkOS05NGEyNmRjY2Y0MzYiLCJpYXQiOjE3NzY3NDgwMDcsImV4cCI6MTc3NzM1MjgwN30._7Nm1GL7oao9wdxCswSqdauLImoUjQBR0mziTEyFZRA
+
+POST http://localhost:4000/orders
+content-type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "userId": "ca07a896-bd92-4ee3-8ad9-94a26dccf436",
+  "orderItems": [
+    {
+      "productId": "1a09a920-82b9-4ab4-bac0-7c6bd0a0b7c8",
+      "quantity": 10,
+      "price": 10.99
+    },
+    {
+      "productId": "2f05b7d3-fde2-49ac-a575-b36745254c86",
+      "quantity": 1,
+      "price": 12.99
+    }
+  ]
+}
+
+###
+GET http://localhost:4000/orders
+Authorization: Bearer {{token}}
+
+###
+GET http://localhost:4000/orders/9f0168ab-7554-41e1-a61e-df0cf2e4c548
+Authorization: Bearer {{token}}

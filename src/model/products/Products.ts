@@ -40,8 +40,29 @@ export class Products extends Entity<ProductProps> {
     });
   }
 
+  decreaseStock(quantity: number): Products {
+    return this.clone({ stock: this.stock - quantity });
+  }
+
   static restore(id: string, props: ProductProps): Products {
     return new Products(id, props);
+  }
+
+  private clone(changes: Partial<ProductProps>): Products {
+    return new Products(this.id, {
+      ...this.props,
+      ...changes
+    });
+  }
+
+  toJson() {
+    return {
+      id: this.id,
+      name: this.name,
+      price: this.price,
+      stock: this.stock,
+      createdAt: this.createdAt,
+    };
   }
 
   get name(): string { return this.props.name; }

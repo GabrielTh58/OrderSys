@@ -1,12 +1,12 @@
 import { Router } from "express";
-import { ProductsRepository } from "../adapter/ProductsRepository";
+import { PrismaProductsRepository } from "../adapter/PrismaProductsRepository";
 import { ProductsService } from "../service/ProductsService";
 import { ProductsController } from "../controller/ProductsController";
 import { prisma } from "../db/Prisma";
 
 const router = Router()
 
-const productsRepo = new ProductsRepository(prisma);
+const productsRepo = new PrismaProductsRepository(prisma);
 const productsService = new ProductsService(productsRepo);
 const productsController = new ProductsController(productsService);
 
@@ -57,7 +57,7 @@ router.post("/", (req, res) => {
  *           application/json:
  *             schema:
  *               type: array
- *               items:
+ *               OrderItems:
  *                 type: object
  *                 properties:
  *                   id:

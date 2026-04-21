@@ -2,12 +2,12 @@ import { Products as PrismaProducts } from "../../generated/prisma/client";
 import { Products } from "../model";
 
 export class ProductMapper{
-    static toDomain(prismaProduct: PrismaProducts): Products {
-        return Products.restore(prismaProduct.id, {
-            name: prismaProduct.name,
-            price: prismaProduct.price,
-            stock: prismaProduct.stock,
-            createdAt: prismaProduct.createdAt,
+    static toDomain(rawProduct: PrismaProducts): Products {
+        return Products.restore(rawProduct.id, {
+            name: rawProduct.name,
+            price: rawProduct.price,
+            stock: rawProduct.stock,
+            createdAt: rawProduct.createdAt,
         });
     }
 
